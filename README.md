@@ -65,7 +65,7 @@ These version should support the cri-o version.**
 
 ```bash
 # Use the same versions to avoid issues with the installation.
-sudo apt-get install -y cri-o cri-o-runc kubelet=1.24.2-00 kubeadm=1.24.2-00 kubectl=1.24.2-00
+sudo apt-get install -y cri-o cri-o-runc kubelet=1.26.0-00 kubeadm=1.26.0-00 kubectl=1.26.0-00
 ```
 
 ```bash
