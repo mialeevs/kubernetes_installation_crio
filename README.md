@@ -15,7 +15,7 @@ sudo apt install -y apt-transport-https ca-certificates curl gnupg2 software-pro
 
 # Export the OS and CRI_O version values
 export OS_VERSION=xUbuntu_22.04
-export CRIO_VERSION=1.24
+export CRIO_VERSION=1.26
 ```
 
 > Download the GPG key for cri-o
