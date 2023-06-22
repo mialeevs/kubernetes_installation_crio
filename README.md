@@ -65,7 +65,7 @@ These version should support the cri-o version.**
 
 ```bash
 # Use the same versions to avoid issues with the installation.
-sudo apt-get install -y cri-o cri-o-runc kubelet=1.26.0-00 kubeadm=1.26.0-00 kubectl=1.26.0-00
+sudo apt-get install -y cri-o cri-o-runc kubelet=1.27.3-00 kubeadm=1.27.3-00 kubectl=1.27.3-00
 ```
 
 ```bash
@@ -134,6 +134,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/tigera-operator.yaml
 
 curl https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/custom-resources.yaml -O
+
 
 kubectl create -f custom-resources.yaml
 
