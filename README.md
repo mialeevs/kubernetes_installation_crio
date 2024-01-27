@@ -40,7 +40,7 @@ sudo echo "deb [signed-by=/usr/share/keyrings/libcontainers-crio-archive-keyring
 > Add the GPG key for kubernetes
 
 ```bash
-sudo curl -fsSLo /etc/apt/keyrings/kubernetes-archive-keyring.gpg https://dl.k8s.io/apt/doc/apt-key.gpg
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 ```
 
 > Add the kubernetes repository
@@ -48,7 +48,7 @@ sudo curl -fsSLo /etc/apt/keyrings/kubernetes-archive-keyring.gpg https://dl.k8s
 **Check for the latest release in https://packages.cloud.google.com/apt/dists**
 
 ```bash
-sudo echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
 
 > Update the repository
@@ -65,7 +65,7 @@ These version should support the cri-o version.**
 
 ```bash
 # Use the same versions to avoid issues with the installation.
-sudo apt-get install -y cri-o cri-o-runc kubelet=1.27.3-00 kubeadm=1.27.3-00 kubectl=1.27.3-00
+sudo apt-get install -y cri-o cri-o-runc cri-tools kubelet kubeadm kubectl
 ```
 
 ```bash
@@ -112,7 +112,7 @@ sudo sysctl --system
 ```bash
 # Calico network
 # Make sure to copy and backup the join command
-sudo kubeadm init --pod-network-cidr=192.168.0.0/16
+sudo kubeadm init --pod-network-cidr=192.168.0.0/16 --cri-socket unix:///var/run/crio/crio.sock
 
 # Copy your join command and keep it safe.
 # Below is a sample
@@ -131,9 +131,9 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 ```bash
 # Use this if you have initialised the cluster with Calico network add on.
-kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/tigera-operator.yaml
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.0/manifests/tigera-operator.yaml
 
-curl https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/custom-resources.yaml -O
+curl https://raw.githubusercontent.com/projectcalico/calico/v3.27.0/manifests/custom-resources.yaml -O
 
 
 kubectl create -f custom-resources.yaml
