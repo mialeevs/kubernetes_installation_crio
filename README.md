@@ -104,6 +104,18 @@ EOF
 sudo sysctl --system
 ```
 
+### Disable SWAP
+> Disable swap on controlplane and dataplane nodes
+
+```bash
+sudo swappff -a
+```
+
+```bash
+sudo vim /etc/fstab
+# comment the line which starts with **swap.img**.
+```
+
 ### On the Kube master server
 
 > Initialize the cluster by passing the cidr value.
